@@ -1,16 +1,28 @@
-CXX = g++
-CXXFLAGS = -Iinclude -Wall -std=c++17
-LIBS = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+CXX      := g++
+CXXFLAGS := -std=c++17 -Wall -Wextra -O2
+LDFLAGS  := -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
-SRC = src/main.cpp src/Graph/Graph.cpp src/Editor/Editor.cpp
-OBJ = $(SRC:src/%.cpp=build/%.o)
+SRCDIR   := src
+INCDIR   := include
+BUILDDIR := build
+TARGET   := bin/graph_editor
 
-bin/graph_editor: $(OBJ)
-	$(CXX) $(OBJ) -o $@ $(LIBS)
+SRCS := $(SRCDIR)/main.cpp \
+        $(SRCDIR)/Editor/Editor.cpp \
+        $(SRCDIR)/Graph/Graph.cpp
 
-build/%.o: src/%.cpp
+OBJS := $(patsubst $(SRCDIR)/%.cpp, $(BUILDDIR)/%.o, $(SRCS))
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
+
+$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
 
 clean:
-	rm -rf build/* bin/*
+	rm -rf $(BUILDDIR) $(TARGET)
+
+.PHONY: all clean
