@@ -56,7 +56,7 @@ static void DrawLabel(const char *text, int x, int y) {
 static void DrawInputBox(Rectangle r, const char *buf, bool focused,
                          Color accent) {
   DrawRectangleRounded(r, 0.3f, 8, {22, 25, 42, 255});
-  DrawRectangleRoundedLines(r, 0.3f, 8,
+  DrawRectangleRoundedLines(r, 0.3f, 8, 1.5f,
                             focused ? accent : (Color){40, 50, 72, 255});
   DrawText(buf, (int)r.x + 8, (int)(r.y + r.height / 2) - 8, 16,
            focused ? C_TEXT : (Color){148, 163, 184, 255});
@@ -75,7 +75,7 @@ static void DrawButton(Rectangle r, const char *text, Color bg, Color textColor,
   Color c = hovered ? Lerp4(bg, {255, 255, 255, 255}, 0.15f) : bg;
   DrawRectangleRounded(r, 0.35f, 10, c);
   if (hovered)
-    DrawRectangleRoundedLines(r, 0.35f, 10,
+    DrawRectangleRoundedLines(r, 0.35f, 10, 1.5f,
                               WithAlpha({255, 255, 255, 255}, 80));
   int tw = MeasureText(text, 15);
   DrawText(text, (int)(r.x + r.width / 2 - tw / 2),
@@ -406,7 +406,7 @@ void Editor::DrawUI() {
     Color bg = isActive ? modeColors[i] : C_PANEL2;
     DrawRectangleRounded(r, 0.3f, 8, bg);
     if (!isActive)
-      DrawRectangleRoundedLines(r, 0.3f, 8, (Color){40, 50, 72, 255});
+      DrawRectangleRoundedLines(r, 0.3f, 8, 1.0f, (Color){40, 50, 72, 255});
     int tw = MeasureText(modeLabels[i], 11);
     DrawText(modeLabels[i], (int)(r.x + r.width / 2 - tw / 2), (int)(r.y + 8),
              11, isActive ? C_PANEL : C_MUTED);
