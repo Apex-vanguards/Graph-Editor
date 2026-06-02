@@ -15,7 +15,7 @@
 ![raylib](https://img.shields.io/badge/raylib-5.x-white?style=flat-square)
 ![Linux](https://img.shields.io/badge/Linux-supported-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Windows](https://img.shields.io/badge/Windows-supported-0078D6?style=flat-square&logo=windows)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+![License](https://img.shields.io/badge/license-GPL-blue)
 
 </div>
 
@@ -255,7 +255,7 @@ This separation means you can swap out the renderer or plug the Graph into a dif
 
 ## License
 
-MIT — do whatever you want with it.
+GNU — do whatever you want with it.
 
 ---
 
